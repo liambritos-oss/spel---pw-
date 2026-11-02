@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registrar Insumo - SPEL{% endblock %}
+
+{% block extra_css %}
+<style>
+    .eco-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(230, 255, 200, 0.5) 100%);
+        border: 2px solid var(--eco-glass-border);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 8px 24px rgba(0, 0, 0, 0.15);
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+    .eco-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        color: var(--eco-text);
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        border-bottom: 2px solid rgba(118, 192, 35, 0.3);
+        padding-bottom: 0.8rem;
+    }
+
+    .eco-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .eco-form p {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin: 0;
+        font-weight: 600;
+        color: #214408;
+    }
+
+    .eco-form input[type="text"],
+    .eco-form input[type="number"],
+    .eco-form select,
+    .eco-form textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(118, 192, 35, 0.6);
+        background: rgba(255, 255, 255, 0.85);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+        color: #1a3c05;
+        outline: none;
+        box-sizing: border-box;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .eco-form input:focus,
+    .eco-form select:focus,
+    .eco-form textarea:focus {
+        background: #ffffff;
+        border-color: var(--eco-green-light);
+        box-shadow: 0 0 10px rgba(164, 224, 67, 0.8), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .eco-btn-group {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 1rem;
+    }
+
+    .eco-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 22px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        border: 1px solid var(--eco-glass-border);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .eco-btn-save {
+        color: #ffffff;
+        background: linear-gradient(180deg, #a4e043 0%, #76c023 50%, #3e7b12 100%);
+        box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.8), 0 4px 10px rgba(0, 0, 0, 0.2);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .eco-btn-save:hover {
+        transform: translateY(-2px) scale(1.02);
+        background: linear-gradient(180deg, #b8f054 0%, #88d431 50%, #4a8f17 100%);
+    }
+
+    .eco-btn-cancel {
+        color: #4a1212;
+        background: linear-gradient(180deg, #ffffff 0%, #fcdada 50%, #e07272 100%);
+        box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.9), 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .eco-btn-cancel:hover {
+        transform: translateY(-2px) scale(1.02);
+        background: linear-gradient(180deg, #ffffff 0%, #ffe8e8 50%, #ef8383 100%);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="eco-card">
+    <div class="eco-title">
+        <span class="eco-icon">📦</span> Registrar Nuevo Insumo
+    </div>
+
+    <form method="post" class="eco-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="eco-btn-group">
+            <a href="{% url 'insumo:insumo_list' %}" class="eco-btn eco-btn-cancel">
+                ❌ Cancelar
+            </a>
+            <button type="submit" class="eco-btn eco-btn-save">
+                💾 Guardar Insumo
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,150 @@
+/* ==========================================
+   VARIABLES PALETA FRUTIGER ECO / AQUA
+   ========================================== */
+:root {
+    --eco-green-light: #a4e043;
+    --eco-green-main: #76c023;
+    --eco-green-dark: #3e7b12;
+    --eco-glass-bg: rgba(255, 255, 255, 0.45);
+    --eco-glass-border: rgba(255, 255, 255, 0.8);
+    --eco-text: #1a3c05;
+}
+
+/* ==========================================
+   ESTILOS GENERALES Y FONDO FRUTIGER ECO
+   ========================================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #d3f392 0%, #76c023 50%, #2f6a09 100%);
+    background-attachment: fixed;
+    color: var(--eco-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   NAVBAR CON EFECTO VIDRIO Y GEL (SKEUOMORPHIC)
+   ========================================== */
+.eco-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(200, 240, 150, 0.4) 50%, rgba(118, 192, 35, 0.6) 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--eco-glass-border);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+/* Logo SPEL con animación flotante / brillo Frutiger */
+.eco-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.eco-logo-img {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+    animation: ecoFloat 3s ease-in-out infinite alternate, ecoGlow 2s ease-in-out infinite alternate;
+}
+
+.eco-logo-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(180deg, #ffffff 0%, #a4e043 50%, #3e7b12 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes ecoFloat {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-6px) rotate(2deg); }
+}
+
+@keyframes ecoGlow {
+    0% { filter: drop-shadow(0 0 2px rgba(164, 224, 67, 0.4)); }
+    100% { filter: drop-shadow(0 0 10px rgba(164, 224, 67, 0.9)); }
+}
+
+/* ==========================================
+   MENÚ NAVEGACIÓN E ÍCONOS ESTILO GEL 3D
+   ========================================== */
+.eco-nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.eco-nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #1a3c05;
+    font-weight: bold;
+    font-size: 0.95rem;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(220, 250, 170, 0.7) 50%, rgba(130, 205, 40, 0.8) 100%);
+    border: 1px solid var(--eco-glass-border);
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.9), 0 3px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease-in-out;
+}
+
+.eco-nav-item a:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(240, 255, 200, 0.9) 50%, rgba(164, 224, 67, 1) 100%);
+    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 1), 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.eco-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #a4e043 40%, #3e7b12 100%);
+    box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-size: 11px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+   ========================================== */
+.eco-main-container {
+    flex: 1;
+    max-width: 1200px;
+    width: 90%;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    border: 2px solid var(--eco-glass-border);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* FOOTER */
+.eco-footer {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(20, 50, 5, 0.3);
+    color: #ffffff;
+    backdrop-filter: blur(5px);
+    border-top: 1px solid var(--eco-glass-border);
+    font-size: 0.85rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}

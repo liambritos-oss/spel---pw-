@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Eliminar Insumo - SPEL{% endblock %}
+
+{% block extra_css %}
+<style>
+    .eco-card-danger {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 230, 230, 0.65) 100%);
+        border: 2px solid rgba(255, 180, 180, 0.9);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 10px 28px rgba(180, 40, 40, 0.15);
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .eco-title-danger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-bottom: 1.2rem;
+        color: #8a1f1f;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        border-bottom: 2px solid rgba(220, 80, 80, 0.3);
+        padding-bottom: 0.8rem;
+    }
+
+    .eco-warning-text {
+        font-size: 1.05rem;
+        color: #4a1515;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+
+    .eco-object-preview {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(220, 100, 100, 0.4);
+        border-radius: 14px;
+        padding: 1rem 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        font-weight: 600;
+        color: #2b0b0b;
+        word-break: break-word;
+    }
+
+    .eco-btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .eco-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 24px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        border: 1px solid var(--eco-glass-border);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .eco-btn-delete { color: #fff; background: linear-gradient(180deg, #f87171 0%, #dc2626 100%); }
+    .eco-btn-cancel { color: #1a3c05; background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(220, 250, 170, 0.7) 100%); }
+
+    .eco-btn:hover { transform: translateY(-2px) scale(1.02); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="eco-card-danger">
+    <div class="eco-title-danger">
+        <span class="eco-icon" style="background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ef4444 40%, #991b1b 100%);">⚠️</span> 
+        Confirmar Eliminación
+    </div>
+
+    <p class="eco-warning-text">
+        ¿Estás seguro de que deseas eliminar este insumo del inventario? Esta acción no se puede deshacer.
+    </p>
+
+    <div class="eco-object-preview">
+        {{ object }}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="eco-btn-group">
+            <a href="{% url 'insumo:insumo_list' %}" class="eco-btn eco-btn-cancel">
+                ↩️ Cancelar
+            </a>
+            <button type="submit" class="eco-btn eco-btn-delete">
+                🗑️ Eliminar Definitivamente
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

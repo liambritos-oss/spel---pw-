@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Insumo #{{ object.id }} - SPEL{% endblock %}
+
+{% block extra_css %}
+<style>
+    .eco-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(225, 250, 190, 0.65) 100%);
+        border: 2px solid var(--eco-glass-border);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 8px 24px rgba(0, 0, 0, 0.15);
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+    .eco-header-update {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid rgba(118, 192, 35, 0.3);
+        padding-bottom: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .eco-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--eco-text);
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .eco-badge-id {
+        background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+        color: #ffffff;
+        font-weight: 800;
+        padding: 6px 14px;
+        border-radius: 16px;
+        font-size: 0.85rem;
+    }
+
+    .eco-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .eco-form p {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin: 0;
+        font-weight: 600;
+        color: #214408;
+    }
+
+    .eco-form input[type="text"],
+    .eco-form input[type="number"],
+    .eco-form select,
+    .eco-form textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(118, 192, 35, 0.6);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+        color: #1a3c05;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    .eco-form input:focus,
+    .eco-form select:focus,
+    .eco-form textarea:focus {
+        background: #ffffff;
+        border-color: var(--eco-green-light);
+        box-shadow: 0 0 10px rgba(164, 224, 67, 0.8);
+    }
+
+    .eco-btn-group {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 1rem;
+    }
+
+    .eco-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 22px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        border: 1px solid var(--eco-glass-border);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .eco-btn-save { color: #fff; background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%); }
+    .eco-btn-cancel { color: #1a3c05; background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(220, 250, 170, 0.7) 100%); }
+
+    .eco-btn:hover { transform: translateY(-2px) scale(1.02); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="eco-card">
+    <div class="eco-header-update">
+        <div class="eco-title">
+            <span class="eco-icon">✏️</span> Editar Insumo
+        </div>
+        <span class="eco-badge-id">ID: #{{ object.id }}</span>
+    </div>
+
+    <form method="post" class="eco-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="eco-btn-group">
+            <a href="{% url 'insumo:insumo_list' %}" class="eco-btn eco-btn-cancel">
+                ❌ Cancelar
+            </a>
+            <button type="submit" class="eco-btn eco-btn-save">
+                💾 Actualizar Insumo
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

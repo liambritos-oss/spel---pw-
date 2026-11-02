@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SPEL - Sistema de Gestión{% endblock %}</title>
+    
+    <!-- Archivo CSS vinculado desde static/css/style.css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <header class="eco-navbar">
+        <a href="{% url 'inicio:inicio' %}" class="eco-logo-container">
+            <img src="{% static 'img/imagen.png' %}" alt="Logo SPEL" class="eco-logo-img">
+            <span class="eco-logo-text">SPEL</span>
+        </a>
+
+        <nav>
+            <ul class="eco-nav-links">
+                <li class="eco-nav-item"><a href="{% url 'inicio:inicio' %}"><span class="eco-icon">🏠</span> Inicio</a></li>
+                <li class="eco-nav-item"><a href="{% url 'publicacion:publicacion_list' %}"><span class="eco-icon">📢</span> Publicaciones</a></li>
+                <li class="eco-nav-item"><a href="{% url 'donaciones:donaciones_list' %}"><span class="eco-icon">🎁</span> Donaciones</a></li>
+                <li class="eco-nav-item"><a href="{% url 'insumo:insumo_list' %}"><span class="eco-icon">📦</span> Insumos</a></li>
+                <li class="eco-nav-item"><a href="{% url 'admin_auditoria:admin_auditoria_list' %}"><span class="eco-icon">🛡️</span> Auditoría</a></li>
+                {% if user.is_authenticated %}
+                <li class="eco-nav-item"><a href="{% url 'apps.security:logout' %}"><span class="eco-icon">🚪</span> Salir</a></li>
+                {% else %}
+                <li class="eco-nav-item"><a href="{% url 'apps.security:login' %}"><span class="eco-icon">🔑</span> Ingresar</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main class="eco-main-container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="eco-footer">
+        <p>&copy; {% now "Y" %} SPEL - Sistema de Gestión Escolar. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Archivo JS vinculado desde static/js/main.js -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

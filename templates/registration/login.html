@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Iniciar Sesión - SPEL{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* ==========================================
+       ESTILOS FRUTIGER ECO PARA AUTENTICACIÓN
+       ========================================== */
+    .eco-login-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(225, 250, 190, 0.65) 100%);
+        border: 2px solid var(--eco-glass-border);
+        border-radius: 28px;
+        padding: 2.5rem 2rem;
+        box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 10px 30px rgba(0, 0, 0, 0.15);
+        max-width: 420px;
+        margin: 2rem auto;
+        text-align: center;
+    }
+
+    .eco-login-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 2rem;
+        border-bottom: 2px solid rgba(118, 192, 35, 0.3);
+        padding-bottom: 1rem;
+    }
+
+    .eco-login-header h2 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--eco-text);
+        margin: 0;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .eco-login-sub {
+        font-size: 0.9rem;
+        color: #3e7b12;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    /* Formulario y Campos de Autenticación */
+    .eco-login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        text-align: left;
+    }
+
+    .eco-login-form p {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin: 0;
+        font-weight: 700;
+        color: #214408;
+        font-size: 0.95rem;
+    }
+
+    .eco-login-form input[type="text"],
+    .eco-login-form input[type="password"] {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(118, 192, 35, 0.6);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(255, 255, 255, 0.9);
+        font-size: 0.98rem;
+        color: #1a3c05;
+        outline: none;
+        box-sizing: border-box;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .eco-login-form input:focus {
+        background: #ffffff;
+        border-color: var(--eco-green-light);
+        box-shadow: 0 0 10px rgba(164, 224, 67, 0.8), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Errores del Formulario */
+    .eco-login-errors {
+        background: rgba(254, 226, 226, 0.8);
+        border: 1px solid #f87171;
+        color: #991b1b;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    /* Botón Acceder Estilo Gel 3D */
+    .eco-btn-login {
+        width: 100%;
+        padding: 12px;
+        border-radius: 20px;
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: #ffffff;
+        cursor: pointer;
+        border: 1px solid var(--eco-glass-border);
+        background: linear-gradient(180deg, #a4e043 0%, #76c023 50%, #3e7b12 100%);
+        box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0, 0, 0, 0.2);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s ease-in-out;
+        margin-top: 0.8rem;
+    }
+
+    .eco-btn-login:hover {
+        transform: translateY(-2px) scale(1.02);
+        background: linear-gradient(180deg, #b8f054 0%, #88d431 50%, #4a8f17 100%);
+        box-shadow: inset 0 2px 5px rgba(255, 255, 255, 1), 0 6px 16px rgba(0, 0, 0, 0.25);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="eco-login-card">
+    <div class="eco-login-header">
+        <span class="eco-icon" style="width: 52px; height: 52px; font-size: 24px;">🔑</span>
+        <h2>Iniciar Sesión</h2>
+        <p class="eco-login-sub">Ingresa tus credenciales para acceder a SPEL</p>
+    </div>
+
+    <!-- Muestra errores generales de autenticación si existen -->
+    {% if form.non_field_errors %}
+        <div class="eco-login-errors">
+            {% for error in form.non_field_errors %}
+                <div>⚠️ {{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Formulario de Autenticación de Django -->
+    <form method="post" class="eco-login-form">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+
+        <button type="submit" class="eco-btn-login">
+            🚀 Acceder
+        </button>
+    </form>
+</div>
+{% endblock %}

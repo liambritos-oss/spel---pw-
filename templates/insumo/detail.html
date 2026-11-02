@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalle de Insumo #{{ object.id }} - SPEL{% endblock %}
+
+{% block extra_css %}
+<style>
+    .eco-card-detail {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(225, 250, 190, 0.6) 100%);
+        border: 2px solid var(--eco-glass-border);
+        border-radius: 24px;
+        padding: 2.5rem;
+        box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 10px 28px rgba(0, 0, 0, 0.15);
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .eco-detail-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid rgba(118, 192, 35, 0.3);
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .eco-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--eco-text);
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .eco-badge-id {
+        background: linear-gradient(180deg, #a4e043 0%, #76c023 100%);
+        color: #ffffff;
+        font-weight: 800;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 3px 6px rgba(0,0,0,0.15);
+    }
+
+    .eco-detail-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .eco-detail-item {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(118, 192, 35, 0.4);
+        border-radius: 16px;
+        padding: 1rem 1.4rem;
+        box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .eco-label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--eco-green-dark);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .eco-value {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1a3c05;
+        word-break: break-word;
+    }
+
+    .eco-btn-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-top: 1rem;
+    }
+
+    .eco-btn-actions { display: flex; gap: 10px; }
+
+    .eco-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        border: 1px solid var(--eco-glass-border);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .eco-btn-back {
+        color: #1a3c05;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(220, 250, 170, 0.7) 50%, rgba(130, 205, 40, 0.8) 100%);
+    }
+
+    .eco-btn-edit { color: #fff; background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%); }
+    .eco-btn-delete { color: #fff; background: linear-gradient(180deg, #f87171 0%, #dc2626 100%); }
+
+    .eco-btn:hover { transform: translateY(-2px) scale(1.02); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="eco-card-detail">
+    <div class="eco-detail-header">
+        <div class="eco-title">
+            <span class="eco-icon">📦</span> Detalle del Insumo
+        </div>
+        <span class="eco-badge-id">ID: #{{ object.id }}</span>
+    </div>
+
+    <div class="eco-detail-grid">
+        <div class="eco-detail-item">
+            <span class="eco-label">🏷️ Nombre / Descripción</span>
+            <span class="eco-value">{{ object }}</span>
+        </div>
+    </div>
+
+    <div class="eco-btn-group">
+        <a href="{% url 'insumo:insumo_list' %}" class="eco-btn eco-btn-back">
+            ↩️ Volver a la Lista
+        </a>
+
+        <div class="eco-btn-actions">
+            <a href="{% url 'insumo:insumo_update' object.pk %}" class="eco-btn eco-btn-edit">
+                ✏️ Editar
+            </a>
+            <a href="{% url 'insumo:insumo_delete' object.pk %}" class="eco-btn eco-btn-delete">
+                🗑️ Eliminar
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

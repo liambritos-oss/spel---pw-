@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio - SPEL{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* ==========================================
+       ESTILOS FRUTIGER ECO PARA LA PAGINA INICIO
+       ========================================== */
+    .eco-hero {
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(225, 250, 190, 0.65) 100%);
+        border-radius: 24px;
+        border: 2px solid var(--eco-glass-border);
+        box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 8px 24px rgba(0, 0, 0, 0.12);
+        margin-bottom: 2.5rem;
+    }
+
+    .eco-hero-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--eco-text);
+        margin-bottom: 0.8rem;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .eco-hero-description {
+        font-size: 1.1rem;
+        color: #2a5209;
+        max-width: 680px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-weight: 600;
+    }
+
+    /* Grilla de Módulos Principal */
+    .eco-modules-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .eco-module-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(230, 255, 200, 0.55) 100%);
+        border: 2px solid var(--eco-glass-border);
+        border-radius: 20px;
+        padding: 1.8rem;
+        box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.9), 0 6px 18px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: var(--eco-text);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        transition: all 0.25s ease-in-out;
+    }
+
+    .eco-module-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 255, 210, 0.85) 100%);
+        box-shadow: inset 0 2px 5px rgba(255, 255, 255, 1), 0 12px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .eco-module-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        background: radial-gradient(circle at 35% 35%, #ffffff 0%, #a4e043 40%, #3e7b12 100%);
+        box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .eco-module-card h3 {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #1a3c05;
+    }
+
+    .eco-module-card p {
+        margin: 0;
+        font-size: 0.92rem;
+        color: #325a10;
+        line-height: 1.4;
+        font-weight: 500;
+    }
+
+    .eco-module-link {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #3e7b12;
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .eco-module-card:hover .eco-module-link {
+        color: #10b981;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Banner Hero Principal -->
+<div class="eco-hero">
+    <h1 class="eco-hero-title">
+        <span class="eco-icon">🌱</span> Panel Principal SPEL
+    </h1>
+    <p class="eco-hero-description">
+        Bienvenido a la plataforma modular de gestión educativa. Selecciona un módulo para consultar registros o realizar operaciones en el sistema.
+    </p>
+</div>
+
+<!-- Tarjetas de Navegación Módulos -->
+<div class="eco-modules-grid">
+    <!-- Módulo Publicaciones -->
+    <a href="{% url 'publicacion:publicacion_list' %}" class="eco-module-card">
+        <div class="eco-module-icon">📢</div>
+        <h3>Publicaciones</h3>
+        <p>Gestión de comunicados, anuncios del sistema y avisos informativos.</p>
+        <span class="eco-module-link">Acceder al módulo ➔</span>
+    </a>
+
+    <!-- Módulo Donaciones -->
+    <a href="{% url 'donaciones:donaciones_list' %}" class="eco-module-card">
+        <div class="eco-module-icon">🎁</div>
+        <h3>Donaciones</h3>
+        <p>Registro, control y seguimiento de aportes y donaciones recibidas.</p>
+        <span class="eco-module-link">Acceder al módulo ➔</span>
+    </a>
+
+    <!-- Módulo Insumos -->
+    <a href="{% url 'insumo:insumo_list' %}" class="eco-module-card">
+        <div class="eco-module-icon">📦</div>
+        <h3>Insumos</h3>
+        <p>Control de inventarios, asignación y stock de materiales escolares.</p>
+        <span class="eco-module-link">Acceder al módulo ➔</span>
+    </a>
+
+    <!-- Módulo Auditoría -->
+    <a href="{% url 'admin_auditoria:admin_auditoria_list' %}" class="eco-module-card">
+        <div class="eco-module-icon">🛡️</div>
+        <h3>Auditoría</h3>
+        <p>Historial de cambios, acciones de usuarios y trazabilidad de seguridad.</p>
+        <span class="eco-module-link">Acceder al módulo ➔</span>
+    </a>
+</div>
+{% endblock %}
